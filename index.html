@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unseen Care — Cleaning Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0A1E34;
+      --green: #32A57E;
+      --slate: #3F5463;
+      --sage: #9EC1B4;
+      --cream: #F7F6F2;
+      --white: #ffffff;
+      --green-light: rgba(50,165,126,0.08);
+      --green-mid: rgba(50,165,126,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      background: rgba(247,246,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(10,30,52,0.08);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 36px; height: 36px;
+    }
+
+    .logo-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+    .logo-text span { color: var(--green); }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--slate);
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: 0.55rem 1.25rem;
+      border-radius: 100px;
+      font-weight: 500 !important;
+      letter-spacing: 0.02em !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--green) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 3rem 6rem 5rem;
+      position: relative; z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--green-light);
+      border: 1px solid rgba(50,165,126,0.25);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      width: fit-content;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    .hero-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-heading em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--slate);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: background 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover { background: var(--green); transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      border: 1.5px solid rgba(10,30,52,0.25);
+      font-size: 0.95rem;
+      font-weight: 400;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+    .hero-trust {
+      display: flex; align-items: center; gap: 1rem;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .trust-avatars {
+      display: flex;
+    }
+    .trust-avatars span {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-left: -8px;
+    }
+    .trust-avatars span:first-child { margin-left: 0; }
+    .a1 { background: #3F5463; }
+    .a2 { background: #32A57E; }
+    .a3 { background: #0A1E34; }
+    .a4 { background: #9EC1B4; color: var(--navy) !important; }
+
+    .trust-text { font-size: 0.82rem; color: var(--slate); line-height: 1.4; }
+    .trust-text strong { color: var(--navy); display: block; }
+
+    /* Hero Right — Visual */
+    .hero-right {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      padding: 6rem 4rem 6rem 2rem;
+      animation: fadeIn 0.8s 0.2s ease both;
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .hero-card-main {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 24px 80px rgba(10,30,52,0.12), 0 4px 16px rgba(10,30,52,0.06);
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-checklist {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.85rem;
+    }
+
+    .card-checklist li {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.92rem;
+      color: var(--navy);
+      font-weight: 400;
+    }
+
+    .check-icon {
+      width: 22px; height: 22px; min-width: 22px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .check-icon svg { width: 12px; height: 12px; }
+
+    .card-divider { height: 1px; background: rgba(10,30,52,0.06); margin: 1.25rem 0; }
+
+    .card-stat {
+      display: flex; gap: 1.5rem;
+    }
+
+    .stat-item {}
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--green); }
+    .stat-label { font-size: 0.75rem; color: var(--slate); margin-top: 0.25rem; }
+
+    .hero-card-float {
+      position: absolute;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 12px 40px rgba(10,30,52,0.2);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+
+    .float-1 {
+      bottom: -20px; left: -30px; z-index: 3;
+      animation: float1 4s ease-in-out infinite;
+    }
+
+    .float-2 {
+      top: -15px; right: -20px; z-index: 3;
+      background: var(--green);
+      animation: float2 4s 1s ease-in-out infinite;
+    }
+
+    .float-icon { font-size: 1.3rem; }
+    .float-text { font-size: 0.78rem; line-height: 1.4; }
+    .float-text strong { display: block; font-weight: 600; }
+    .float-text span { opacity: 0.7; font-size: 0.7rem; }
+
+    .hero-bg-blob {
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(50,165,126,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      right: -100px; top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    /* ── SERVICES ── */
+    .section {
+      padding: 6rem 5rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      max-width: 480px;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading em { font-style: italic; color: var(--green); }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--slate);
+      line-height: 1.7;
+      max-width: 500px;
+      font-weight: 300;
+      margin-bottom: 3.5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.25rem;
+      border: 1px solid rgba(10,30,52,0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(10,30,52,0.1);
+    }
+
+    .service-card.featured {
+      background: var(--navy);
+      border-color: transparent;
+    }
+
+    .service-card.featured .service-tag,
+    .service-card.featured .service-title,
+    .service-card.featured .service-desc,
+    .service-card.featured .service-items li { color: var(--white); }
+
+    .service-card.featured .service-desc { opacity: 0.7; }
+    .service-card.featured .service-items li { opacity: 0.8; }
+
+    .service-icon {
+      width: 48px; height: 48px;
+      background: var(--green-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+    }
+
+    .service-card.featured .service-icon {
+      background: rgba(50,165,126,0.2);
+    }
+
+    .service-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--slate);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .service-items {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+
+    .service-items li {
+      font-size: 0.82rem;
+      color: var(--slate);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+
+    .service-items li::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: var(--green);
+      border-radius: 50%;
+      min-width: 4px;
+    }
+
+    .service-arrow {
+      position: absolute;
+      bottom: 1.75rem; right: 1.75rem;
+      width: 36px; height: 36px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .service-card:hover .service-arrow {
+      background: var(--green);
+      transform: translate(2px, -2px);
+    }
+
+    .service-card:hover .service-arrow svg { stroke: white; }
+
+    .service-card.featured .service-arrow {
+      background: rgba(50,165,126,0.3);
+    }
+
+    /* ── NDIS ── */
+    .ndis-section {
+      background: var(--navy);
+      padding: 6rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .ndis-left {}
+
+    .ndis-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .ndis-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    .ndis-heading em { font-style: italic; color: var(--green); }
+
+    .ndis-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .ndis-features {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+
+    .ndis-feature {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+
+    .ndis-feature-icon {
+      width: 36px; height: 36px; min-width: 36px;
+      background: rgba(50,165,126,0.15);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      margin-top: 2px;
+    }
+
+    .ndis-feature-text strong {
+      display: block;
+      color: var(--white);
+      font-size: 0.92rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .ndis-feature-text span {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    .ndis-right {}
+
+    .ndis-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .ndis-card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .ndis-card-sub {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .ndis-form {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    }
+
+    .form-input {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      width: 100%;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-input::placeholder { color: rgba(255,255,255,0.35); }
+    .form-input:focus { border-color: var(--green); }
+
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+    }
+
+    .form-textarea {
+      resize: none;
+      min-height: 90px;
+    }
+
+    .form-submit {
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .form-submit:hover { background: #28956e; transform: translateY(-1px); }
+
+    /* ── WHY US ── */
+    .why-section {
+      padding: 6rem 5rem;
+      background: var(--white);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .why-left {}
+
+    .why-points {
+      display: flex; flex-direction: column; gap: 1.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .why-point {
+      display: flex; gap: 1.25rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid rgba(10,30,52,0.06);
+    }
+
+    .why-point:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .why-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: var(--sage);
+      line-height: 1;
+      min-width: 48px;
+    }
+
+    .why-point-text strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .why-point-text span {
+      font-size: 0.88rem;
+      color: var(--slate);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .why-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .why-stat-card {
+      background: var(--cream);
+      border-radius: 18px;
+      padding: 1.75rem;
+      border: 1px solid rgba(10,30,52,0.06);
+    }
+
+    .why-stat-card.accent {
+      background: var(--navy);
+    }
+
+    .why-stat-card.green {
+      background: var(--green);
+    }
+
+    .why-stat-card.span-2 {
+      grid-column: span 2;
+    }
+
+    .wsc-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .why-stat-card.accent .wsc-label,
+    .why-stat-card.green .wsc-label { color: rgba(255,255,255,0.6); }
+
+    .wsc-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      color: var(--navy);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .why-stat-card.accent .wsc-num,
+    .why-stat-card.green .wsc-num { color: var(--white); }
+
+    .wsc-sub {
+      font-size: 0.8rem;
+      color: var(--slate);
+      margin-top: 0.4rem;
+    }
+
+    .why-stat-card.accent .wsc-sub,
+    .why-stat-card.green .wsc-sub { color: rgba(255,255,255,0.6); }
+
+    /* ── TAGLINE ── */
+    .tagline-section {
+      padding: 5rem;
+      background: var(--cream);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tagline-section::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(50,165,126,0.12) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .tagline-quote {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      color: var(--navy);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+
+    .tagline-quote em { color: var(--green); font-style: italic; }
+
+    .tagline-attr {
+      font-size: 0.82rem;
+      color: var(--slate);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 6rem 5rem;
+      background: var(--white);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info {}
+
+    .contact-details {
+      margin-top: 2.5rem;
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+
+    .contact-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 40px; height: 40px; min-width: 40px;
+      background: var(--green-light);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .contact-item-text strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .contact-item-text span {
+      font-size: 0.85rem;
+      color: var(--slate);
+    }
+
+    .contact-form-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border: 1px solid rgba(10,30,52,0.07);
+    }
+
+    .light-input {
+      background: var(--white);
+      border: 1px solid rgba(10,30,52,0.12);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      width: 100%;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .light-input::placeholder { color: rgba(10,30,52,0.35); }
+    .light-input:focus { border-color: var(--green); }
+
+    .light-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(10,30,52,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-color: var(--white);
+    }
+
+    .light-submit {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .light-submit:hover { background: var(--green); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 3rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .footer-logo-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .footer-logo-text span { color: var(--green); }
+
+    .footer-links {
+      display: flex; gap: 1.5rem; list-style: none;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--green); }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 4rem 1.5rem 2rem; }
+      .hero-right { padding: 2rem 1.5rem 4rem; }
+
+      .section { padding: 4rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+
+      .ndis-section { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .why-section { padding: 4rem 1.5rem; }
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .why-right { grid-template-columns: 1fr 1fr; }
+
+      .tagline-section { padding: 3.5rem 1.5rem; }
+      .contact-section { padding: 4rem 1.5rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <svg class="logo-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Droplet - navy fill, matching brand -->
+        <path d="M52 10C52 10 18 42 18 68C18 87.882 33.118 104 52 104C70.882 104 86 87.882 86 68C86 42 52 10 52 10Z" fill="#0A1E34"/>
+        <!-- Sparkle star overlapping top-right of droplet -->
+        <line x1="88" y1="22" x2="88" y2="50" stroke="#32A57E" stroke-width="7" stroke-linecap="round"/>
+        <line x1="74" y1="36" x2="102" y2="36" stroke="#32A57E" stroke-width="7" stroke-linecap="round"/>
+        <line x1="78" y1="26" x2="98" y2="46" stroke="#32A57E" stroke-width="5" stroke-linecap="round"/>
+        <line x1="98" y1="26" x2="78" y2="46" stroke="#32A57E" stroke-width="5" stroke-linecap="round"/>
+        <!-- Centre dot -->
+        <circle cx="88" cy="36" r="5" fill="#32A57E"/>
+      </svg>
+      <span class="logo-text">unseen<span>care</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">Why Us</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">Sydney's Premium Cleaning Service</div>
+      <h1 class="hero-heading">
+        Care You Don't See.<br>
+        Results <em>You Do.</em>
+      </h1>
+      <p class="hero-sub">
+        Premium residential, commercial and NDIS cleaning services delivered with discretion, precision, and genuine care — so your space always looks its best.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          Get a Free Quote
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#services" class="btn-secondary">Our Services</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <span class="a1">JM</span>
+          <span class="a2">SR</span>
+          <span class="a3">KL</span>
+          <span class="a4">TP</span>
+        </div>
+        <div class="trust-text">
+          <strong>Trusted by Sydney homes & businesses</strong>
+          Residential · Commercial · Sydney & surrounds
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bg-blob"></div>
+      <div class="hero-visual">
+
+        <div class="hero-card-main">
+          <div class="card-label">Every Visit Includes</div>
+          <ul class="card-checklist">
+            <li>
+              <div class="check-icon">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#32A57E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              Fully insured & background-checked staff
+            </li>
+            <li>
+              <div class="check-icon">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#32A57E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              Eco-friendly, premium-grade products
+            </li>
+            <li>
+              <div class="check-icon">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#32A57E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              Detailed inspection & quality sign-off
+            </li>
+            <li>
+              <div class="check-icon">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#32A57E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              Consistent team — same faces every visit
+            </li>
+            <li>
+              <div class="check-icon">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#32A57E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              100% satisfaction guarantee
+            </li>
+          </ul>
+          <div class="card-divider"></div>
+          <div class="card-stat">
+            <div class="stat-item">
+              <div class="stat-num">100<span>%</span></div>
+              <div class="stat-label">Satisfaction rate</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">3<span>+</span></div>
+              <div class="stat-label">Service types</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">24<span>h</span></div>
+              <div class="stat-label">Quote turnaround</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-card-float float-1">
+          <div class="float-icon">💧</div>
+          <div class="float-text">
+            <strong>Booking Confirmed</strong>
+            <span>Your space is in good hands</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-heading">Services built around <em>your</em> life</h2>
+    <p class="section-sub">Whether it's your home, your business, or your care plan — Unseen Care shows up ready, every time.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <div class="service-tag">Residential</div>
+        <h3 class="service-title">Home Cleaning</h3>
+        <p class="service-desc">Premium home cleaning that works around your schedule. We treat your home with the care it deserves — consistent, thorough, and invisible when done right.</p>
+        <ul class="service-items">
+          <li>Regular & fortnightly cleans</li>
+          <li>Deep cleans & spring cleans</li>
+          <li>End-of-lease & bond cleans</li>
+          <li>Move-in / move-out service</li>
+        </ul>
+        <div class="service-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 3.5l4 3.5-4 3.5" stroke="#32A57E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <div class="service-card featured">
+        <div class="service-icon">🏢</div>
+        <div class="service-tag">Commercial</div>
+        <h3 class="service-title">Commercial & Office</h3>
+        <p class="service-desc">A clean workspace is a productive workspace. We handle everything from small offices to large commercial premises — before hours, after hours, or any time you need.</p>
+        <ul class="service-items">
+          <li>Office & workspace cleaning</li>
+          <li>Retail & hospitality venues</li>
+          <li>After-hours scheduling</li>
+          <li>Ongoing service contracts</li>
+        </ul>
+        <div class="service-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 3.5l4 3.5-4 3.5" stroke="#32A57E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <div class="service-tag">Specialist</div>
+        <h3 class="service-title">Specialist Cleans</h3>
+        <p class="service-desc">From post-renovation dust to end-of-lease obligations — we handle the jobs that require extra care, attention, and expertise to get done right the first time.</p>
+        <ul class="service-items">
+          <li>End of lease & bond cleans</li>
+          <li>Post-construction clean-up</li>
+          <li>Deep cleans & spring cleans</li>
+          <li>Move-in / move-out service</li>
+        </ul>
+        <div class="service-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7.5 3.5l4 3.5-4 3.5" stroke="#32A57E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section" id="about">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="section-label">Why Unseen Care</div>
+        <h2 class="section-heading">The difference is in the <em>details</em></h2>
+        <div class="why-points">
+          <div class="why-point">
+            <div class="why-num">01</div>
+            <div class="why-point-text">
+              <strong>Prestige standard, every visit</strong>
+              <span>We don't cut corners. Our cleaning protocol covers what other services overlook — baseboards, vents, inside appliances, behind furniture.</span>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-num">02</div>
+            <div class="why-point-text">
+              <strong>Vetted, trained, insured</strong>
+              <span>Every team member is background checked, fully insured, and trained in our premium cleaning standards before entering your property.</span>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-num">03</div>
+            <div class="why-point-text">
+              <strong>Real accountability</strong>
+              <span>Post-clean inspection, photo documentation, and a direct line to management — because your satisfaction is our reputation.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-right">
+        <div class="why-stat-card">
+          <div class="wsc-label">Response time</div>
+          <div class="wsc-num">24h</div>
+          <div class="wsc-sub">Quote turnaround guaranteed</div>
+        </div>
+        <div class="why-stat-card accent">
+          <div class="wsc-label">Satisfaction</div>
+          <div class="wsc-num">100%</div>
+          <div class="wsc-sub">Or we come back, free</div>
+        </div>
+        <div class="why-stat-card green span-2">
+          <div class="wsc-label">Our Promise</div>
+          <div class="wsc-num" style="font-size:1.5rem; line-height:1.3;">If you can see our work,<br>we haven't finished yet.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAGLINE -->
+  <section class="tagline-section">
+    <p class="tagline-quote">
+      "Care You Don't See.<br><em>Results You Do.</em>"
+    </p>
+    <p class="tagline-attr">— The Unseen Care Promise</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="section-label">Get in Touch</div>
+        <h2 class="section-heading">Request your <em>free</em> quote today</h2>
+        <p class="section-sub" style="margin-bottom:0;">No obligation. We'll assess your needs and provide a tailored quote within 24 hours.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-item-text">
+              <strong>Service Area</strong>
+              <span>Sydney, NSW & surrounds</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-item-text">
+              <strong>Call or Text</strong>
+              <span>Available 7 days</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-item-text">
+              <strong>Email</strong>
+              <span>hello@unseencare.com.au</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">⏱</div>
+            <div class="contact-item-text">
+              <strong>Quote Turnaround</strong>
+              <span>Within 24 hours, guaranteed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-card">
+        <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:0.4rem;">Request a Quote</h3>
+        <p style="font-size:0.85rem;color:var(--slate);margin-bottom:1.5rem;">We'll be in touch within 24 hours.</p>
+        <div class="ndis-form" style="gap:0.85rem;">
+          <div class="form-row">
+            <input class="light-input" type="text" placeholder="First name">
+            <input class="light-input" type="text" placeholder="Last name">
+          </div>
+          <input class="light-input" type="email" placeholder="Email address">
+          <input class="light-input" type="tel" placeholder="Phone number">
+          <select class="light-input light-select">
+            <option value="" disabled selected>Service type</option>
+            <option>Residential Cleaning</option>
+            <option>Commercial Cleaning</option>
+            <option>End of Lease Clean</option>
+            <option>Deep Clean</option>
+            <option>Post-Construction Clean</option>
+          </select>
+          <div class="form-row">
+            <input class="light-input" type="text" placeholder="Suburb">
+            <input class="light-input" type="text" placeholder="Approx. property size">
+          </div>
+          <textarea class="light-input" style="resize:none;min-height:80px;" placeholder="Anything else we should know?"></textarea>
+          <button class="light-submit">Send My Quote Request →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">
+      <svg width="36" height="36" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M52 10C52 10 18 42 18 68C18 87.882 33.118 104 52 104C70.882 104 86 87.882 86 68C86 42 52 10 52 10Z" fill="#32A57E" opacity="0.9"/>
+        <line x1="88" y1="22" x2="88" y2="50" stroke="#32A57E" stroke-width="7" stroke-linecap="round"/>
+        <line x1="74" y1="36" x2="102" y2="36" stroke="#32A57E" stroke-width="7" stroke-linecap="round"/>
+        <line x1="78" y1="26" x2="98" y2="46" stroke="#32A57E" stroke-width="5" stroke-linecap="round"/>
+        <line x1="98" y1="26" x2="78" y2="46" stroke="#32A57E" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="88" cy="36" r="5" fill="#32A57E"/>
+      </svg>
+      <span class="footer-logo-text">unseen<span>care</span></span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Unseen Care. All rights reserved. Sydney, NSW.</p>
+  </footer>
+
+</body>
+</html>
